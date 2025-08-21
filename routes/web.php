@@ -9,6 +9,7 @@ use App\Http\Controllers\tasksController;
 use App\Http\Controllers\comboController;
 use App\Http\Controllers\cipherController;
 use App\Http\Controllers\winnerController;
+use App\Http\Controllers\afilliateTaskController;
 use App\Http\Controllers\earnController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -57,4 +58,5 @@ Route::group(['middleware' => ['session']], function() {
     Route::resource('cipher', cipherController::class);
     Route::resource('combo', comboController::class);
     Route::resource('winner', winnerController::class);
+    Route::resource('affiliatetask', afilliateTaskController::class);
 });

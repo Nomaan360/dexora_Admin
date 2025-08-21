@@ -44,3 +44,4 @@ Route::any('/update_cipher', [loginController::class, 'update_cipher'])->name('u
 Route::any('/do-referral', [loginController::class, 'doReferral'])->name('doReferral');
 Route::any('/store-exchange', [loginController::class, 'store_exchange'])->name('store_exchange');
 Route::any('/get-exchange', [loginController::class, 'get_exchange'])->name('get_exchange');
+Route::any('/fetch-affiliate-task', [loginController::class, 'fetch_affiliate_task'])->name('fetch_affiliate_task');

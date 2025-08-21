@@ -16,6 +16,7 @@ use App\Models\myTeamModel;
 use App\Models\userExchangeModel;
 use App\Models\winnerModel;
 use App\Models\tasksModel;
+use App\Models\afiliateTask;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -1141,6 +1142,22 @@ $url = $apiUrl . "?" . http_build_query($params);
             $res['status_code'] = 1;
             $res['message'] = "Added";
             $res['exchange_name'] = "9INC";
+        }
+        return is_mobile($type, "dashboard", $res);
+    }
+
+    function fetch_affiliate_task(Request $request){
+        $type = "API";
+        $user_id = $request->input('user_id');
+        $data= afiliateTask::get();
+        if($data){
+            $res['status_code'] = 1;
+            $res['message'] = "Added";
+            $res['tasks'] = $data;
+        }else{
+            $res['status_code'] = 1;
+            $res['message'] = "Added";
+            $res['tasks'] = "";
         }
         return is_mobile($type, "dashboard", $res);
     }
