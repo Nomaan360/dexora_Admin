@@ -49,6 +49,16 @@ class afilliateTaskController extends Controller
         $updateData = $request->except('_method','_token','submit');
         
         $type = $request->input('type');
+        $file_name = "";
+        if ($request->hasFile('task_logo')) {
+            $file = $request->file('task_logo');
+            $originalname = $file->getClientOriginalName();
+            $name = "affiliate-task" . '_' . date('YmdHis');
+            $ext = \File::extension($originalname);
+            $file_name = $name . '.' . $ext;
+            $path = $file->storeAs('public/', $file_name);
+            $updateData['task_logo'] = $file_name;
+        }
         
         afiliateTask::insert($updateData);
 
@@ -100,6 +110,16 @@ class afilliateTaskController extends Controller
         $updateData = $request->except('_method','_token','submit');
         
         $type = $request->input('type');
+        $file_name = "";
+        if ($request->hasFile('task_logo')) {
+            $file = $request->file('task_logo');
+            $originalname = $file->getClientOriginalName();
+            $name = "cards-image" . '_' . date('YmdHis');
+            $ext = \File::extension($originalname);
+            $file_name = $name . '.' . $ext;
+            $path = $file->storeAs('public/', $file_name);
+            $updateData['task_logo'] = $file_name;
+        }
 
         afiliateTask::where(['id' => $id])->update($updateData);
 
