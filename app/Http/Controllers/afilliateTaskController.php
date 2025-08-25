@@ -49,6 +49,20 @@ class afilliateTaskController extends Controller
         $updateData = $request->except('_method','_token','submit');
         
         $type = $request->input('type');
+        $task_name = $request->input('task_name');
+        $task_description = $request->input('task_description');
+        if (strlen($task_name)>9) {
+            $res['status_code'] = 0;
+            $res['message'] = "Task Name should be maximum of 9 letters";
+
+            return is_mobile($type, "affiliatetask.index", $res);
+        }
+        if (strlen($task_description)>100) {
+            $res['status_code'] = 0;
+            $res['message'] = "Task Description should be maximum of 100 letters";
+
+            return is_mobile($type, "affiliatetask.index", $res);
+        }
         $file_name = "";
         if ($request->hasFile('task_logo')) {
             $file = $request->file('task_logo');
