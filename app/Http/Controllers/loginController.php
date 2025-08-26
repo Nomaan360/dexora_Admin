@@ -196,7 +196,7 @@ class loginController extends Controller
 
             if($sponsor != NULL)
             {
-                DB::statement("UPDATE users set my_direct = (my_direct + 1) where chat_id = '".$sponsor."'");
+                DB::statement("UPDATE users set my_direct = (my_direct + 1),coin=(coin+5000) where chat_id = '".$sponsor."'");
 
                 $earnLog = array();
                 $earnLog['user_id'] = $sponsor;
