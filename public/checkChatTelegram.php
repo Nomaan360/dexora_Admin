@@ -1,11 +1,11 @@
 <?php
 
 // Telegram Bot Token
-$botToken = '7991662609:AAHbPYzh8s-6Zcqui3-m-eQsQ6CwcnvatbA'; // Replace with your bot token
+$botToken = '8172625290:AAGIDqNWqtCzhQjpI8L-HuoA-Ojwqr5VprI'; // Replace with your bot token
 $apiUrl = "https://api.telegram.org/bot$botToken/getChatMember";
 
 // Channel or Group ID (e.g., @channelusername or -1001234567890)
-$chatId = "@nineinc"; // Use @ for public channels or -100... for private channels
+$chatId = "@dexorainc"; // Use @ for public channels or -100... for private channels
 
 // User ID to check
 $userId = "7152144610"; // Replace with the user ID you want to check
