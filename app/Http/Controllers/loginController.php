@@ -224,13 +224,7 @@ class loginController extends Controller
         $conditonMatch = array();
         $conditionName = array();
 
-        if($id == 6944344158)
-        {
-            $conditonMatch['0'] = 50;
-        }else
-        {
-            $conditonMatch['0'] = $friends['0']['ref'];
-        }
+        $conditonMatch['0'] = $friends['0']['ref'];
         $conditionName['0'] = "Refer";
 
         $conditonMatch['-1'] = 0;
@@ -489,7 +483,7 @@ class loginController extends Controller
             {
                 $updateBalance = $updateBalance + $value['amount'];
 
-                earnModel::where(['id' => $value['id']])->update(['status' => 1]);
+                // earnModel::where(['id' => $value['id']])->update(['status' => 1]);
             }
         }
 
