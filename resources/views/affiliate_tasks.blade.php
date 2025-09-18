@@ -86,7 +86,9 @@
                         <td>{{$j}}</td>
                         <td>{{$pvalue['task_name']}}</td>
                         <td>{{$pvalue['task_description']}}</td>
-                        <td>{{$pvalue['task_logo']}}</td>
+                        <!-- <td>{{$pvalue['task_logo']}}</td> -->
+                        <td><a href="{{asset('storage/'.$pvalue['task_logo'])}}" target="_blank">View</a></td>
+
                         <td>{{$pvalue['task_link']}}</td>
                         <td>
                           <a href="{{ route('affiliatetask.edit',$pvalue['id'])}}"><button style="float:left;" type="button" class="btn btn-sm btn-icon btn-text-secondary rounded-pill delete-record waves-effect waves-light"><i class="ri-edit-circle-line ri-20px"></i></button></a>

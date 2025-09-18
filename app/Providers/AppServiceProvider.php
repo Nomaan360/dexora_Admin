@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         // $this->app->bind('path.public', function() {
-        //     return base_path().'/../html';
+        //     return base_path().'/../dexora_html';
         // });
     }
 
