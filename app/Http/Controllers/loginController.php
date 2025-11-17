@@ -341,35 +341,72 @@ class loginController extends Controller
 
         $checkExist = earnModel::where(['refrence_id' => "0", 'tag' => "CHECK-IN", 'date' => date('Y-m-d'), 'user_id' => $id])->get()->toArray();
 
-        $dayCheckIn = earnModel::where(['refrence_id' => "0", 'tag' => "CHECK-IN", 'user_id' => $id])->get()->toArray();
-        
-        if(count($checkExist) > 0)
-        {
-            $res['showCheckIn'] = 0;
-            $res['checkInDay'] = count($dayCheckIn) + 1;
-        }else
-        {
-            if($authtype != "auth")
-            {
-                // $earnLog = array();
-                // $earnLog['user_id'] = $id;
-                // $earnLog['amount'] = "10000";
-                // $earnLog['tag'] = "CHECK-IN";
-                // $earnLog['refrence_id'] = 0;
-                // $earnLog['date'] = date('Y-m-d');
+        $dayCheckIn = earnModel::where(['refrence_id' => "0", 'tag' => "CHECK-IN", 'user_id' => $id])->orderBy('date','DESC')->get()->toArray();
 
-                // earnModel::insert($earnLog);
+        $continuous = [];
+        $expectedDate = date('Y-m-d', strtotime('-1 day'));
 
-                $res['showCheckIn'] = 1;
-                $res['checkInDay'] = count($dayCheckIn) + 1;
-            }else
-            {
-                $res['showCheckIn'] = 0;
-                $res['checkInDay'] = count($dayCheckIn) + 1;
+        foreach ($dayCheckIn as $check) {
+            if ($check['date'] == $expectedDate) {
+                $continuous[] = $check;
+                $expectedDate = date('Y-m-d', strtotime($expectedDate . ' -1 day'));
+            } else {
+                break;
             }
         }
 
-        $weekNumber = ceil($res['checkInDay'] / 7);
+        $dayCheckIn = $continuous;
+        // ----------------------
+
+        $lastDate = $dayCheckIn[0]['date'] ?? null;
+        $yesterday = date('Y-m-d', strtotime('-1 day'));
+
+        if ($lastDate !== date('Y-m-d') && $lastDate !== $yesterday) {
+            $nextDay = 1;
+        } else {
+            $nextDay = count($dayCheckIn) + 1;
+        }
+
+        /*  
+        |-----------------------------------------|
+        |  FIX: Week reset when 1 day is skipped  |
+        |-----------------------------------------|
+        */
+        if ($nextDay == 1) {
+
+            // total check-ins ever done
+            $totalCheckIns = earnModel::where([
+                'refrence_id' => "0",
+                'tag' => "CHECK-IN",
+                'user_id' => $id
+            ])->count();
+
+            // completed full weeks (each week = 7 days)
+            $previousWeeks = floor($totalCheckIns / 7);
+
+            // so, new week = previous + 1
+            $currentWeek = $previousWeeks + 1;
+
+        } else {
+            // normal week calculation
+            $currentWeek = ceil($nextDay / 7);
+        }
+
+
+        if(count($checkExist) > 0) {
+            $res['showCheckIn'] = 0;
+            $res['checkInDay'] = $nextDay;
+        } else {
+            if($authtype != "auth") {
+                $res['showCheckIn'] = 1;
+                $res['checkInDay'] = $nextDay;
+            }else
+            {
+                $res['showCheckIn'] = 0;
+                $res['checkInDay'] = $nextDay;
+            }
+        }
+
 
         // Calculate the day of the week (1 to 7, assuming 1 is Monday)
         $dayOfWeek = $res['checkInDay'] % 7;
@@ -378,7 +415,7 @@ class loginController extends Controller
         }
 
         $res['checkInDay'] = $dayOfWeek;
-        $res['currentWeek'] = $weekNumber;
+        $res['currentWeek'] = $currentWeek;
 
         $res['coinUpdate'] = $data['0']['coinUpdate'];
 
