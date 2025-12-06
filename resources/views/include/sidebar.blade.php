@@ -79,6 +79,12 @@
                 <div data-i18n="Affiliate Task">Affiliate Task </div>
             </a>
         </li>
+        <li class="menu-item">
+            <a href="{{route('get_affilitate_user')}}" class="menu-link">
+                <i class="menu-icon tf-icons ri-ticket-2-line"></i>
+                <div data-i18n="Affiliate Task">Affiliate Users </div>
+            </a>
+        </li>
 
         <li class="menu-item">
             <a href="{{route('allusers')}}" class="menu-link">

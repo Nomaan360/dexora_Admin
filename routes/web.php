@@ -44,6 +44,7 @@ Route::any('/users', [loginController::class, 'allusers'])->name('allusers')->mi
 
 Route::any('/weekly-referral-report', [earnController::class, 'index'])->name('reportIndex')->middleware("session");
 Route::any('/filter-weekly-referral-report', [earnController::class, 'store'])->name('reportFilter')->middleware("session");
+Route::any('/get-affilitate-user', [loginController::class, 'get_affilitate_user'])->name('get_affilitate_user')->middleware("session");
 
 // Route::any('/user-details', [loginController::class, 'userDetails'])->name('userDetails');
 
