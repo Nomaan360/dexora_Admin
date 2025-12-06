@@ -340,7 +340,6 @@ class loginController extends Controller
         $res['category'] = $category;
 
         $checkExist = earnModel::where(['refrence_id' => "0", 'tag' => "CHECK-IN", 'date' => date('Y-m-d'), 'user_id' => $id])->get()->toArray();
-
         $dayCheckIn = earnModel::where(['refrence_id' => "0", 'tag' => "CHECK-IN", 'user_id' => $id])->orderBy('date','DESC')->get()->toArray();
 
         $continuous = [];
@@ -1221,10 +1220,10 @@ $url = $apiUrl . "?" . http_build_query($params);
         $check_user = DB::table('affiliate_user')->where('user_id',$user_id)->first();
         if ($check_user) {
             $res['status_code'] = 1;
-            $res['message'] = "Yet To Store";
+            $res['message'] = "We will inform you once Referral Program will be Live";
         }else{
             $res['status_code'] = 0;
-            $res['message'] = "We will inform you once Referral Program will be Live";
+            $res['message'] = "Yet To Store";
         }
         return is_mobile($type, "dashboard", $res);
     }
