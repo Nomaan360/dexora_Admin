@@ -30,6 +30,7 @@ Route::any('/fetch-tasks', [loginController::class, 'fetchTasks'])->name('fetchT
 
 Route::any('/insert-earn-log', [loginController::class, 'insertEarnLog'])->name('insertEarnLog');
 Route::any('/insert-affilitate-join', [loginController::class, 'insertAffiliatejoin'])->name('insertAffiliatejoin');
+Route::any('/check-affilitate-join', [loginController::class, 'checkAffiliatejoin'])->name('checkAffiliatejoin');
 Route::any('/mine-card', [loginController::class, 'mineCard'])->name('mineCard');
 
 

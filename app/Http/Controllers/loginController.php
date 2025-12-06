@@ -1213,4 +1213,19 @@ $url = $apiUrl . "?" . http_build_query($params);
 
         return is_mobile($type, "dashboard", $res);
     }
+
+    function checkAffiliatejoin(Request $request){
+        $type = "API";
+        $user_id = $request->input('user_id');
+
+        $check_user = DB::table('affiliate_user')->where('user_id',$user_id)->first();
+        if ($check_user) {
+            $res['status_code'] = 1;
+            $res['message'] = "Yet To Store";
+        }else{
+            $res['status_code'] = 0;
+            $res['message'] = "We will inform you once Referral Program will be Live";
+        }
+        return is_mobile($type, "dashboard", $res);
+    }
 }
