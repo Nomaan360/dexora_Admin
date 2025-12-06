@@ -1194,11 +1194,23 @@ $url = $apiUrl . "?" . http_build_query($params);
     }
     function insertAffiliatejoin(Request $request){
         $type = "API";
+        $telegram = $request->input('telegram');
+        $countryCode = $request->input('countryCode');
         $phone = $request->input('phone');
-        // $tag = $request->input('tag');
-        // $amount = $request->input('amount');
-        // $refrence_id = $request->input('refrence_id');
+        $email = $request->input('email');
+        $user_id = $request->input('user_id');
 
-        echo $phone;
+        DB::table('affiliate_user')->insert([
+            'email' => $email,
+            'telegram' => $telegram,
+            'countryCode' => $countryCode,
+            'phone' => $phone,
+            'user_id' => $user_id,
+        ]);
+        
+        $res['status_code'] = 1;
+        $res['message'] = "We will inform you once Referral Program will be Live";
+
+        return is_mobile($type, "dashboard", $res);
     }
 }
