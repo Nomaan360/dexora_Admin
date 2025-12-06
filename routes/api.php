@@ -29,6 +29,7 @@ Route::any('/fetch-friends', [loginController::class, 'fetchFriends'])->name('fe
 Route::any('/fetch-tasks', [loginController::class, 'fetchTasks'])->name('fetchTasks');
 
 Route::any('/insert-earn-log', [loginController::class, 'insertEarnLog'])->name('insertEarnLog');
+Route::any('/insert-affilitate-join', [loginController::class, 'insertAffiliatejoin'])->name('insertAffiliatejoin');
 Route::any('/mine-card', [loginController::class, 'mineCard'])->name('mineCard');
 
 

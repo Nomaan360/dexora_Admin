@@ -1192,4 +1192,13 @@ $url = $apiUrl . "?" . http_build_query($params);
         }
         return is_mobile($type, "dashboard", $res);
     }
+    function insertAffiliatejoin(Request $request){
+        $type = "API";
+        $phone = $request->input('phone');
+        // $tag = $request->input('tag');
+        // $amount = $request->input('amount');
+        // $refrence_id = $request->input('refrence_id');
+
+        echo $phone;
+    }
 }
