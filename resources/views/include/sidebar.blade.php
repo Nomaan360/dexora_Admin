@@ -82,7 +82,7 @@
         <li class="menu-item">
             <a href="{{route('get_affilitate_user')}}" class="menu-link">
                 <i class="menu-icon tf-icons ri-ticket-2-line"></i>
-                <div data-i18n="Affiliate Task">Affiliate Users </div>
+                <div data-i18n="Affiliate Users">Affiliate Users </div>
             </a>
         </li>
 

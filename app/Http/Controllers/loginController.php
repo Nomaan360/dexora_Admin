@@ -1230,8 +1230,18 @@ $url = $apiUrl . "?" . http_build_query($params);
     function get_affilitate_user(Request $request){
         $type = $request->input('type');
         $user_id = $request->session()->get('user_id');
-        $users = DB::table('affiliate_user')->join('users','users.chat_id','=','affiliate_user.user_id')->select('users.chat_id','users.wallet_address', 'affiliate_user.*')->get()->toArray();
-
+        // $users = DB::table('affiliate_user')->join('users','users.chat_id','=','affiliate_user.user_id')->select('users.chat_id','users.wallet_address', 'affiliate_user.*')->get()->toArray();
+$users = DB::table('affiliate_user')
+    ->join('users', function ($join) {
+        $join->on(
+            DB::raw('users.chat_id COLLATE utf8mb4_0900_ai_ci'),
+            '=',
+            DB::raw('affiliate_user.user_id COLLATE utf8mb4_0900_ai_ci')
+        );
+    })
+    ->select('users.chat_id', 'users.wallet_address', 'affiliate_user.*')
+    ->get()
+    ->toArray();
         $res['status_code'] = 0;
         $res['message'] = "Data Fetched Successfully.";
         $res['data'] = $users;
