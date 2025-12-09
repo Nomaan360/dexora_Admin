@@ -1,6 +1,6 @@
 <?php
 // Replace with your bot token
-$BOT_TOKEN = '8172625290:AAGIDqNWqtCzhQjpI8L-HuoA-Ojwqr5VprI';
+$BOT_TOKEN = '8253996558:AAFdEyoPgVehXCPFDzwB4SJ0FSRcRMvVzFY';
 $TELEGRAM_API_URL = "https://api.telegram.org/bot$BOT_TOKEN";
 
 // Read the incoming request body
@@ -11,16 +11,16 @@ if (isset($update['message']) && $update['message']['text'] === '/start') {
     $chatId = $update['message']['chat']['id'];
 
     // Send a welcome message back to the user
-    $message = "🎉 Welcome to TAPAURA!
+    $message = "🎉 Welcome to Tapora!
     Tap your way into the Dexora universe, collect $AURA Coins, and build your strategy to maximize rewards ⚡
 🚀 Stay tuned for our token airdrop – official dates will be revealed soon.
-    Join now and unleash your true power with TAPAURA! 💰";
+    Join now and unleash your true power with Tapora! 💰";
 
     // Inline keyboard with buttons
     $replyMarkup = [
         'inline_keyboard' => [
             [
-                ['text' => 'Tap to Play 🎮', 'url' => 'https://t.me/tapaura_bot/tapaura?start'], // Replace with actual play URL
+                ['text' => 'Tap to Play 🎮', 'url' => 'https://t.me/tapoora_bot/tapora?start'], // Replace with actual play URL
                 ['text' => 'Follow our Channel', 'url' => 'https://t.me/DexoraFinanceAnn'], // Replace with your Telegram channel URL
             ],
             [

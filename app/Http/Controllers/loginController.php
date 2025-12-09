@@ -611,7 +611,7 @@ class loginController extends Controller
             if($tag == "TASK" && ($refrence_id == 7 || $refrence_id == 8))
             {
                 // Telegram Bot Token
-                $botToken = '8172625290:AAGIDqNWqtCzhQjpI8L-HuoA-Ojwqr5VprI'; // Replace with your bot token
+                $botToken = '8253996558:AAFdEyoPgVehXCPFDzwB4SJ0FSRcRMvVzFY'; // Replace with your bot token
                 $apiUrl = "https://api.telegram.org/bot$botToken/getChatMember";
                 if($refrence_id == 7)
                 {
